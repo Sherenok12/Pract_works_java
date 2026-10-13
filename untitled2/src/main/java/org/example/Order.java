@@ -8,20 +8,18 @@ import java.util.List;
 @Getter
 public class Order {
 
-    private List<Product> products; // Список товарів у замовленні
-    private double totalPrice;      // Загальна вартість замовлення
+    private List<Product> products; 
+    private double totalPrice;      
 
     @Setter
-    private String status;          // Статус замовлення
+    private String status;         
 
-    // Конструктор
     public Order(Cart cart) {
         this.products = new ArrayList<>(cart.getProducts());
         this.totalPrice = cart.getTotalPrice();
         this.status = "Нове";
     }
 
-    // Метод для виведення інформації про замовлення
     @Override
     public String toString() {
 
