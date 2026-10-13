@@ -9,12 +9,12 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        // Створення категорій
+        
         Category electronics = new Category(1, "Електроніка");
         Category smartphones = new Category(2, "Смартфони");
         Category accessories = new Category(3, "Аксесуари");
 
-        // Створення товарів
+
         Product product1 = new Product(
                 1,
                 "Ноутбук",
@@ -39,10 +39,10 @@ public class Main {
                 accessories
         );
 
-        // Створення кошика
+      
         Cart cart = new Cart();
 
-        // Історія замовлень
+        
         List<Order> orderHistory = new ArrayList<>();
 
         while (true) {
