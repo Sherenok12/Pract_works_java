@@ -11,7 +11,6 @@ public abstract class TransactionAnalyzer {
     private static final DateTimeFormatter DATE_FORMAT =
             DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    // Загальний баланс
     public static double calculateTotalBalance(
             List<Transaction> transactions) {
 
@@ -24,7 +23,6 @@ public abstract class TransactionAnalyzer {
         return balance;
     }
 
-    // Кількість транзакцій за місяць
     public static int countTransactionsByMonth(
             List<Transaction> transactions, String monthYear) {
 
@@ -43,7 +41,6 @@ public abstract class TransactionAnalyzer {
         return count;
     }
 
-    // 10 найбільших витрат
     public static List<Transaction> findTopExpenses(
             List<Transaction> transactions) {
 
@@ -54,7 +51,6 @@ public abstract class TransactionAnalyzer {
                 .collect(Collectors.toList());
     }
 
-    // Найбільша витрата за місяць
     public static Transaction findLargestExpense(
             List<Transaction> transactions, String monthYear) {
 
@@ -65,7 +61,6 @@ public abstract class TransactionAnalyzer {
                 .orElse(null);
     }
 
-    // Найменша витрата за місяць
     public static Transaction findSmallestExpense(
             List<Transaction> transactions, String monthYear) {
 
@@ -76,7 +71,6 @@ public abstract class TransactionAnalyzer {
                 .orElse(null);
     }
 
-    // Отримання місяця та року транзакції
     private static String getMonthYear(Transaction t) {
         LocalDate date = LocalDate.parse(
                 t.getDate(), DATE_FORMAT);
