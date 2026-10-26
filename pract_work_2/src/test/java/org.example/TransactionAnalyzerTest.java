@@ -11,7 +11,7 @@ public class TransactionAnalyzerTest {
     @Test
     public void testCountTransactionsByMonth() {
 
-        // Підготовка тестових даних
+    
         Transaction transaction1 =
                 new Transaction("01-02-2023", 50.0, "Дохід");
 
@@ -23,15 +23,13 @@ public class TransactionAnalyzerTest {
 
         List<Transaction> transactions = Arrays.asList(
                 transaction1, transaction2, transaction3);
-
-        // Підрахунок транзакцій за місяцями
+        
         int countFeb = TransactionAnalyzer.countTransactionsByMonth(
                 transactions, "02-2023");
 
         int countMar = TransactionAnalyzer.countTransactionsByMonth(
                 transactions, "03-2023");
 
-        // Перевірка результатів
         Assertions.assertEquals(
                 2, countFeb,
                 "Кількість транзакцій за лютий неправильна");
@@ -44,7 +42,6 @@ public class TransactionAnalyzerTest {
     @Test
     public void testCalculateTotalBalance() {
 
-        // Підготовка тестових даних
         Transaction transaction1 =
                 new Transaction("01-02-2023", 100.0, "Дохід");
 
@@ -57,11 +54,9 @@ public class TransactionAnalyzerTest {
         List<Transaction> transactions = Arrays.asList(
                 transaction1, transaction2, transaction3);
 
-        // Розрахунок загального балансу
         double result =
                 TransactionAnalyzer.calculateTotalBalance(transactions);
 
-        // Перевірка результату
         Assertions.assertEquals(
                 200.0, result,
                 "Розрахунок загального балансу неправильний");
