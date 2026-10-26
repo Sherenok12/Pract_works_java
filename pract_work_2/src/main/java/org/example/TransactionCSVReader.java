@@ -13,7 +13,6 @@ public abstract class TransactionCSVReader {
         List<Transaction> transactions = new ArrayList<>();
         String line;
 
-        // Пропускаємо заголовок CSV
         br.readLine();
 
         while ((line = br.readLine()) != null) {
