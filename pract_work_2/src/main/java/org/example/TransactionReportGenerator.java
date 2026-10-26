@@ -19,7 +19,6 @@ public abstract class TransactionReportGenerator {
                 "Кількість транзакцій за " + monthYear + ": " + count);
     }
 
-    // Звіт про 10 найбільших витрат
     public static void printTopExpensesReport(
             List<Transaction> topExpenses) {
 
@@ -31,7 +30,6 @@ public abstract class TransactionReportGenerator {
         }
     }
 
-    // Найбільша та найменша витрати за місяць
     public static void printExpenseExtremesReport(
             String monthYear,
             Transaction largest,
@@ -53,9 +51,6 @@ public abstract class TransactionReportGenerator {
                 + Math.abs(smallest.getAmount()) + " грн");
     }
 
-    // Звіт за категоріями та місяцями
-    // Оскільки окремого поля category поки немає,
-    // використовуємо description як назву категорії.
     public static void printExpensesByCategoryAndMonth(
             List<Transaction> transactions) {
 
