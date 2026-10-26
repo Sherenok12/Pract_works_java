@@ -16,13 +16,27 @@ public abstract class TransactionCSVReader {
         br.readLine();
 
         while ((line = br.readLine()) != null) {
-            String[] data = line.split(",");
+            if (line.isBlank()) {
+                continue;
+            }
 
-            String date = data[0].trim();
-            double amount = Double.parseDouble(data[1].trim());
-            String description = data[2].trim();
+            String[] data = line.split(",", 3);
 
-            transactions.add(new Transaction(date, amount, description));
+            if (data.length < 3) {
+                System.err.println("Некоректний рядок: " + line);
+                continue;
+            }
+
+            try {
+                String date = data[0].trim();
+                double amount = Double.parseDouble(data[1].trim());
+                String description = data[2].trim();
+
+                transactions.add(
+                        new Transaction(date, amount, description));
+            } catch (NumberFormatException e) {
+                System.err.println("Некоректна сума: " + line);
+            }
         }
 
         return transactions;
