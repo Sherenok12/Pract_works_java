@@ -1,4 +1,5 @@
 package org.example;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,22 +10,26 @@ import java.util.List;
 
 public abstract class TransactionReader {
 
+    public static BufferedReader openReader(String source)
+            throws IOException {
+
+        URL url = new URL(source);
+
+        return new BufferedReader(
+                new InputStreamReader(
+                        url.openStream(),
+                        StandardCharsets.UTF_8));
+    }
+
     public static List<String> readLines(String source) {
         List<String> lines = new ArrayList<>();
 
-        try {
-            URL url = new URL(source);
+        try (BufferedReader reader = openReader(source)) {
+            String line;
 
-            try (BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(
-                            url.openStream(),
-                            StandardCharsets.UTF_8))) {
-
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if (!line.isBlank()) {
-                        lines.add(line);
-                    }
+            while ((line = reader.readLine()) != null) {
+                if (!line.isBlank()) {
+                    lines.add(line);
                 }
             }
         } catch (IOException e) {
