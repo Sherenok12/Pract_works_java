@@ -11,7 +11,6 @@ public class TransactionAnalyzerTest {
     @Test
     public void testCountTransactionsByMonth() {
 
-    
         Transaction transaction1 =
                 new Transaction("01-02-2023", 50.0, "Дохід");
 
@@ -23,7 +22,7 @@ public class TransactionAnalyzerTest {
 
         List<Transaction> transactions = Arrays.asList(
                 transaction1, transaction2, transaction3);
-        
+
         int countFeb = TransactionAnalyzer.countTransactionsByMonth(
                 transactions, "02-2023");
 
@@ -57,6 +56,7 @@ public class TransactionAnalyzerTest {
         double result =
                 TransactionAnalyzer.calculateTotalBalance(transactions);
 
+        // Перевірка результату
         Assertions.assertEquals(
                 200.0, result,
                 "Розрахунок загального балансу неправильний");
@@ -79,4 +79,50 @@ public class TransactionAnalyzerTest {
         Assertions.assertEquals(-100.0, result.get(1).getAmount());
         Assertions.assertEquals(-50.0, result.get(2).getAmount());
     }
+
+    @Test
+    public void testFindLargestAndSmallestExpense() {
+
+        List<Transaction> transactions = Arrays.asList(
+                new Transaction("01-02-2023", -100.0, "Їжа"),
+                new Transaction("05-02-2023", -500.0, "Оренда"),
+                new Transaction("10-02-2023", -50.0, "Транспорт"),
+                new Transaction("15-03-2023", -700.0, "Інша витрата")
+        );
+
+        Transaction largest =
+                TransactionAnalyzer.findLargestExpense(
+                        transactions, "02-2023");
+
+        Transaction smallest =
+                TransactionAnalyzer.findSmallestExpense(
+                        transactions, "02-2023");
+
+        Assertions.assertNotNull(largest);
+        Assertions.assertNotNull(smallest);
+
+        Assertions.assertEquals(-500.0, largest.getAmount());
+
+        Assertions.assertEquals(-50.0, smallest.getAmount());
+    }
+
+    @Test
+    public void testNoExpensesInMonth() {
+
+        List<Transaction> transactions = Arrays.asList(
+                new Transaction("01-02-2023", 100.0, "Дохід")
+        );
+
+        Transaction largest =
+                TransactionAnalyzer.findLargestExpense(
+                        transactions, "02-2023");
+
+        Transaction smallest =
+                TransactionAnalyzer.findSmallestExpense(
+                        transactions, "02-2023");
+
+        Assertions.assertNull(largest);
+        Assertions.assertNull(smallest);
+    }
+
 }
