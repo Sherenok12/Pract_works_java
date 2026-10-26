@@ -11,7 +11,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        // Читання транзакцій за посиланням
         String filePath = "https://informer.com.ua/dut/java/pr2.csv";
 
         List<Transaction> transactions;
@@ -24,21 +23,17 @@ public class Main {
             transactions = TransactionCSVReader.readTransactions(br);
         }
 
-        // Розрахунок загального балансу
         double totalBalance =
                 TransactionAnalyzer.calculateTotalBalance(transactions);
 
-        // Підрахунок транзакцій за січень 2023 року
         String monthYear = "01-2023";
 
         int count = TransactionAnalyzer.countTransactionsByMonth(
                 transactions, monthYear);
 
-        // Пошук 10 найбільших витрат
         List<Transaction> topExpenses =
                 TransactionAnalyzer.findTopExpenses(transactions);
 
-        // Пошук найбільшої та найменшої витрат за місяць
         Transaction largest =
                 TransactionAnalyzer.findLargestExpense(
                         transactions, monthYear);
@@ -47,7 +42,6 @@ public class Main {
                 TransactionAnalyzer.findSmallestExpense(
                         transactions, monthYear);
 
-        // Виведення звітів
         TransactionReportGenerator.printBalanceReport(totalBalance);
 
         TransactionReportGenerator.printTransactionsCountByMonth(
@@ -58,7 +52,6 @@ public class Main {
         TransactionReportGenerator.printExpenseExtremesReport(
                 monthYear, largest, smallest);
 
-        // Звіт за категоріями та місяцями
         TransactionReportGenerator.printExpensesByCategoryAndMonth(
                 transactions);
     }
